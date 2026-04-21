@@ -1,0 +1,216 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HTML5 APIs Demo</title>
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: #f5f7fb;
+}
+
+/* HEADER */
+header {
+    background: #1f2a44;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    opacity: 0.8;
+}
+
+/* CARD */
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+/* FLEX */
+.flex {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* DRAG DROP */
+.drag-box {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #7b2ff7, #9f44d3);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: grab;
+}
+
+.drop-box {
+    flex: 1;
+    height: 150px;
+    border: 2px dashed #9f44d3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* GEO */
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #2e8b57;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.location-box {
+    background: #eef5ef;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* STORAGE */
+input {
+    padding: 10px;
+    width: 80%;
+    margin: 10px 0;
+}
+
+.btn-blue {
+    background: #2b6cb0;
+}
+
+.btn-red {
+    background: #e53e3e;
+}
+
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #eee;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>HTML5 APIs Demo</h1>
+    <p>Drag & Drop • Geolocation • Web Storage</p>
+</header>
+
+<div class="container">
+
+<!-- DRAG DROP -->
+<div class="card">
+    <h2>1. Drag & Drop API</h2>
+    <div class="flex">
+        <div id="drag" class="drag-box" draggable="true">Drag Me</div>
+        <div id="drop" class="drop-box">Drop Here</div>
+    </div>
+</div>
+
+<!-- GEOLOCATION -->
+<div class="card">
+    <h2>2. Geolocation API</h2>
+    <button onclick="getLocation()">Get My Location</button>
+
+    <div class="location-box" id="location">
+        Latitude: -- <br>
+        Longitude: --
+    </div>
+</div>
+
+<!-- STORAGE -->
+<div class="card">
+    <h2>3. Web Storage API</h2>
+
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <br>
+    <button class="btn-blue" onclick="saveData()">Save Data</button>
+    <button class="btn-red" onclick="clearData()">Clear Data</button>
+    <button onclick="loadData()">Load Data</button>
+
+    <p id="output"></p>
+</div>
+
+<div class="footer">
+    Technologies Used: HTML5, CSS3, JavaScript
+</div>
+
+</div>
+
+<script>
+// DRAG DROP
+const drag = document.getElementById("drag");
+const drop = document.getElementById("drop");
+
+drag.addEventListener("dragstart", e => {
+    e.dataTransfer.setData("text", "drag");
+});
+
+drop.addEventListener("dragover", e => e.preventDefault());
+
+drop.addEventListener("drop", e => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData("text");
+    drop.appendChild(document.getElementById(data));
+});
+
+// GEOLOCATION
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => {
+            document.getElementById("location").innerHTML =
+                "Latitude: " + pos.coords.latitude +
+                "<br>Longitude: " + pos.coords.longitude;
+        });
+    } else {
+        alert("Not supported");
+    }
+}
+
+// STORAGE
+function saveData() {
+    const name = document.getElementById("name").value;
+    localStorage.setItem("user", name);
+    alert("Saved!");
+}
+
+function loadData() {
+    const name = localStorage.getItem("user");
+    document.getElementById("output").innerText = "Stored Name: " + name;
+}
+
+function clearData() {
+    localStorage.clear();
+    alert("Data Cleared");
+}
+</script>
+
+</body>
+</html>
