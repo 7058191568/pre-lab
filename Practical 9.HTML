@@ -1,0 +1,134 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Webpage</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+  
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdf6f0;
+            color: #333;
+        }
+
+       
+        header {
+            text-align: center;
+            padding: 20px;
+            background: #f5d7c6;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        
+        .container {
+            column-count: 3;
+            column-gap: 20px;
+            padding: 20px;
+        }
+
+       
+        .card {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 100%;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, background 0.3s;
+        }
+
+       
+        .card i {
+            font-size: 30px;
+            color: #e29578;
+            margin-bottom: 10px;
+        }
+
+        
+        .card:hover {
+            transform: scale(1.05) rotate(1deg);
+            background: #ffe8d6;
+        }
+
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #f5d7c6;
+        }
+
+      
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+       
+        @media (max-width: 900px) {
+            .container {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Modern Webpage</h1>
+    <p>Using CSS3 Features</p>
+</header>
+
+<section class="container">
+
+    <div class="card">
+        <i class="fas fa-laptop-code"></i>
+        <h2>Web Design</h2>
+        <p>Learn modern responsive design using CSS3.</p>
+    </div>
+
+    <div class="card">
+        <i class="fas fa-paint-brush"></i>
+        <h2>Creative UI</h2>
+        <p>Design beautiful and attractive user interfaces.</p>
+    </div>
+
+    <div class="card">
+        <i class="fas fa-mobile-alt"></i>
+        <h2>Mobile Friendly</h2>
+        <p>Fully responsive layout for all devices.</p>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Responsive Design</p>
+</footer>
+
+</body>
+</html>
